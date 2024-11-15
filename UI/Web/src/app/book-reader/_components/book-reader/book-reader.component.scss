@@ -45,14 +45,14 @@
     --accordion-body-bg-color: black;
     --accordion-header-bg-color: grey;
     --br-actionbar-button-hover-border-color: #6c757d;
-    --br-actionbar-bg-color: white;
+    --br-actionbar-bg-color: #0000;
     --default-state-scrollbar: var(--primary-color-scrollbar);
 }
 
 
 $dark-form-background-no-opacity: rgb(1, 4, 9);
 $primary-color: #0062cc;
-$action-bar-height: 38px;
+$action-bar-height: 45px;
 
 .reader-container {
   &::-webkit-scrollbar {
@@ -111,35 +111,47 @@ $action-bar-height: 38px;
     opacity: 0;
 }
 
+.book-title-text {
+  text-align: center;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media(max-width: 875px) {
+  .book-title {
+    display: none;
+  }
+}
+
+.book-title {
+  margin-top: 10px;
+  text-align: center;
+  text-transform: capitalize;
+  max-height: inherit;
+  width: inherit;
+}
 
 .action-bar {
-    background-color: var(--br-actionbar-bg-color);
+    background-color: #0000;
     overflow: hidden;
-    box-shadow: 0 0 6px 0 rgb(0 0 0 / 70%);
     max-height: $action-bar-height;
     height: $action-bar-height;
+    padding: 5px 20px;
+    position: absolute;
+    width: 100%;
+    top: 0;
 
-    .book-title-text {
-        text-align: center;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 1;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+    .action-bar-left {
+      width: fit-content;
+    }
+    .action-bar-right {
+      width: fit-content;
+
     }
 
-    @media(max-width: 875px) {
-        .book-title {
-            display: none;
-        }
-    }
-
-    .book-title {
-        margin-top: 10px;
-        text-align: center;
-        text-transform: capitalize;
-        max-height: inherit;
-    }
 
     .next-page-highlight {
         color: var(--primary-color);
@@ -270,13 +282,6 @@ $action-bar-height: 38px;
     box-shadow: var(--drawer-pagination-horizontal-rule);
 }
 
-.bottom-bar {
-    position: fixed;
-    width: 100%;
-    bottom: 0px;
-    left: 0px;
-    writing-mode: horizontal-tb;
-}
 
 
 
@@ -284,7 +289,7 @@ $action-bar-height: 38px;
 .column-layout-1 {
     .book-content {
         column-count: 1;
-        column-gap: 20px;
+        column-gap: 60px;
         overflow: hidden;
         word-break: break-word;
         overflow-wrap: break-word;
@@ -294,7 +299,7 @@ $action-bar-height: 38px;
 .column-layout-2 {
     .book-content {
         column-count: 2;
-        column-gap: 20px;
+        column-gap: 60px;
         overflow: hidden;
         word-break: break-word;
         overflow-wrap: break-word;
@@ -322,7 +327,6 @@ $action-bar-height: 38px;
 
 // This is applied to images in the backend
 ::ng-deep .kavita-scale-width {
-    max-height: calc(var(--book-reader-content-max-height) - ($action-bar-height)) !important;
     max-width: calc(var(--book-reader-content-max-width)) !important;
     object-fit: contain;
     object-position: top center;
@@ -419,13 +423,16 @@ $pagination-opacity: 0;
 
 // TODO: Figure out why book-reader has it's own button overrides
 .btn {
+    width: fit-content;
+    height: fit-content;
+
     &.btn-secondary {
         color: var(--br-actionbar-button-text-color);
         border-color: transparent;
         background-color: unset;
 
         &:hover, &:focus {
-            border-color: var(--br-actionbar-button-hover-border-color);
+            background-color: var(--br-actionbar-button-hover-border-color);
         }
     }
 
